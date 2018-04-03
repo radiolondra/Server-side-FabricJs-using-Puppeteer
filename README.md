@@ -15,7 +15,7 @@ It's unthinkable to create the PNGs client side and send them to the server for 
 
 Anyway, whatever the job you want to do, if it needs to export the Fabricjs objects in some image files and perform some time-consuming processing on the image, and you want to do it server side, the usage of Nodejs versions of FabricJs and Node-Canvas is not the right way.
 
-What can we do?
+### What can we do?
 
 The only reliable and fast way is to use some headless browser server side and "simulate" exactly what you'd have done client side.
 
@@ -65,6 +65,9 @@ This will use the package.json file to install all the needed modules. Puppeteer
 Now it's time to configure your Nginx server to answer the app requests.
 
 To configure it, you need to know the IP address of your linux box. To do this you can use ```ipconfig```. Write down the IP address.
+Also you need the port number where our app is listening for connections. The ftestpuppet.js app actually listens at the port 44533.
+
+#### Remember that you could need to add NAT (e.g. you are using VMWare) and open the listening port (in this case 44533). If those basic network configuration are not correctly set the client browser will not be able to reach the linux box IP address.
 
 Now lets configure Nginx.
 
@@ -78,7 +81,7 @@ Now edit the default file, delete all rows and put the following:
 
 ```
 upstream http_backend {
-  server 127.0.0.1:44533;
+  server 127.0.0.1:44533; # this is the port where our app is listening
 }
 
 server {

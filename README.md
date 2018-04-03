@@ -26,7 +26,9 @@ In this repo I used Puppeteer ( https://github.com/GoogleChrome/puppeteer ) to c
 ### Used Behaviour:
 
 Ubuntu 16.04.3 as VMWare virtual machine (remember to install VMWare Tools too)
+
 Nginx 1.10.3
+
 NodeJs 8.10.0
 
 ### INSTALL NGINX
@@ -62,13 +64,15 @@ This will use the package.json file to install all the needed modules. Puppeteer
 
 Now it's time to configure your Nginx server to answer the app requests.
 
-To configure it, you need to know the IP address of your linux box. To do this you can use ipconfig. Write down the IP address.
+To configure it, you need to know the IP address of your linux box. To do this you can use ```ipconfig```. Write down the IP address.
+
 Now lets configure Nginx.
 
 ```$ cd /etc/nginx/sites-available```
 
 This is not the right way but to make thing simpler and faster, make a copy of the "default" file:
-$ sudo cp default default-ORIGINAL
+
+```$ sudo cp default default-ORIGINAL```
 
 Now edit the default file, delete all rows and put the following:
 

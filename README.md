@@ -31,31 +31,31 @@ NodeJs 8.10.0
 
 ### INSTALL NGINX
 
-$ sudo apt-get update
+```$ sudo apt-get update```
 
-$ sudo apt-get install nginx
+```$ sudo apt-get install nginx```
 
 ### INSTALL CURL
 
-$ sudo apt-get install curl
+```$ sudo apt-get install curl```
 
 ### INSTALL NODEJS LTS (includes NPM)
 
-$ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+```$ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -```
 
-$ sudo apt-get install nodejs
+```$ sudo apt-get install nodejs```
 
 ### INSTALL PM2 MANAGER GLOBALLY (useful to launch/control NodeJs apps)
 
-$ sudo npm install pm2 -g
+```$ sudo npm install pm2 -g```
 
 Now copy the repo folder (testpuppetgithub) into your linux user folder and :
 
-$ cd testpuppetgithub
+```$ cd testpuppetgithub```
 
 ### INSTALL THE NEEDED NODE MODULES
 
-$ npm install
+```$ npm install```
 
 This will use the package.json file to install all the needed modules. Puppeteer is installed too together with the Chromium lib.
 
@@ -65,7 +65,7 @@ Now it's time to configure your Nginx server to answer the app requests.
 To configure it, you need to know the IP address of your linux box. To do this you can use ipconfig. Write down the IP address.
 Now lets configure Nginx.
 
-$ cd /etc/nginx/sites-available
+```$ cd /etc/nginx/sites-available```
 
 This is not the right way but to make thing simpler and faster, make a copy of the "default" file:
 $ sudo cp default default-ORIGINAL
@@ -98,15 +98,17 @@ server {
 
 All done. Now it's time to run our app:
 
+```
 $ cd
 
 $ cd testpuppetgithub
 
 $ pm2 start ftestpuppet.js
+```
 
 To inspect the app logs while running:
 
-$ pm2 logs ftestpuppet --lines 10000
+```$ pm2 logs ftestpuppet --lines 10000```
 
 Now the app is running, waiting for connections.
 
@@ -120,9 +122,9 @@ To exit the logs type CTRL-C.
 
 To stop all the running apps:
 
-$ pm2 stop all
+```$ pm2 stop all```
 
 To clean the logs:
 
-$ pm2 flush
+```$ pm2 flush```
 

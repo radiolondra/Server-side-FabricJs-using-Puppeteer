@@ -7,7 +7,7 @@ https://github.com/radiolondra/Fabric-and-or-Node-Canvas-Issues
 and discussed in this post:
 https://github.com/kangax/fabric.js/issues/4812
 
-Node-Canvas, used by the FabricJS node-module, is not able to correctly work with objects' scaling/positioning, specially for Text and patterns.
+Node-Canvas, used by the FabricJS node-module, is actually not able to correctly work with objects' scaling/positioning, specially for Text and patterns.
 
 Imagine you created a browser based video editor where the user can create some fabricjs objects with animations and overlay them over a previously chosen video object. Each object starts at specific frame of the base video and ends at another specific frame. To create the overlays you need to scale all the objects to the real base video width and height, create one PNG for each frame and then use ffmpeg to put all together and create the final (overlayed) video.
 

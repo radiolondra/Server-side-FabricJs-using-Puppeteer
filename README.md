@@ -21,4 +21,63 @@ The only reliable and fast way is to use some headless browser server side and "
 
 In this repo I used Puppeteer ( https://github.com/GoogleChrome/puppeteer ) to create a simple NodeJs app able to create a PNG file starting from a Json encoded FabricJs canvas remotely sent by the client browser. The Fabric version used is the same version used client side, so no Node-Canvas, nothing.
 
+#### Note: the http server host is a Nginx server. All the http server settings reported here are for Nginx only.
+
+Used Behaviour:
+Ubuntu 16.04.3 as VMWare virtual machine (remember to install VMWare Tools too)
+Nginx 1.10.3
+NodeJs 8.10.0
+
+INSTALL NGINX
+$ sudo apt-get update
+$ sudo apt-get install nginx
+
+INSTALL CURL
+$ sudo apt-get install curl
+
+INSTALL NODEJS LTS (includes NPM)
+$ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+$ sudo apt-get install nodejs
+
+INSTALL PM2 MANAGER GLOBALLY (useful to launch/control NodeJs apps)
+$ sudo npm install pm2 -g
+
+Now copy the repo folder (testpuppetgithub) into your linux user folder and :
+$ cd testpuppetgithub
+
+INSTALL THE NEEDED NODE MODULES
+$ npm install
+
+This will use the package.json file to install all the needed modules. Puppeteer is installed too together with the Chromium lib.
+
+Now it's time to configure your Nginx server to answer the app requests.
+$ cd /etc/nginx/sites-available
+This is not the right way but to make thing simple, make a copy of the "default" file:
+$ sudo cp default default-ORIGINAL
+
+Now edit the default file, delete all rows and put the following
+
+```
+upstream http_backend {
+  server 127.0.0.1:44533;
+}
+
+server {
+	listen 80;
+	server_name 192.168.248.132;
+	root /var/www/html;
+	index index.html;
+
+	location / {
+		proxy_pass http://http_backend;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+	}
+}
+```
 

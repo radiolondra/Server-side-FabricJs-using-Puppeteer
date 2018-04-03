@@ -19,7 +19,7 @@ Anyway, whatever the job you want to do, if it needs to export the Fabricjs obje
 
 The only reliable and fast way is to use, server side, the normal FabricJs library (not the nodejs one) with the help of some headless browser and "simulate" exactly what you'd have done client side.
 
-In this repo I used FabricJs 1.7.20 and Puppeteer ( https://github.com/GoogleChrome/puppeteer ) to create a simple NodeJs app able to create a PNG file starting from a Json encoded FabricJs canvas remotely sent by the client browser. The Fabric version used server side is the same version used client side, so no Node-Canvas, and we are safe and happy.
+In this repo I used FabricJs 1.7.20 and Puppeteer ( https://github.com/GoogleChrome/puppeteer ) to create a simple NodeJs app able to create a PNG file starting from a Json encoded FabricJs canvas remotely sent by the client browser. The Fabric version used server side is the same version (better, the same file) used client side, so no Node-Canvas, and we are safe and happy.
 
 #### Note: the http server host is a Nginx server. All the http server settings reported here are for Nginx only.
 

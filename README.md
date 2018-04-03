@@ -50,12 +50,17 @@ $ npm install
 
 This will use the package.json file to install all the needed modules. Puppeteer is installed too together with the Chromium lib.
 
+
 Now it's time to configure your Nginx server to answer the app requests.
+To configure it, you need to know the IP address of your linux box. To do this you can use ipconfig. Write down the IP address.
+Now lets configure Nginx.
+
 $ cd /etc/nginx/sites-available
-This is not the right way but to make thing simple, make a copy of the "default" file:
+
+This is not the right way but to make thing simpler and faster, make a copy of the "default" file:
 $ sudo cp default default-ORIGINAL
 
-Now edit the default file, delete all rows and put the following
+Now edit the default file, delete all rows and put the following:
 
 ```
 upstream http_backend {
@@ -64,7 +69,7 @@ upstream http_backend {
 
 server {
 	listen 80;
-	server_name 192.168.248.132;
+	server_name 192.168.248.132; # PUT HERE THE IP ADDRESS OF YOUR LINUX BOX (ifconfig)
 	root /var/www/html;
 	index index.html;
 
@@ -72,12 +77,36 @@ server {
 		proxy_pass http://http_backend;
 		proxy_set_header X-Real-IP $remote_addr;
 		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	  proxy_http_version 1.1;
-	  proxy_set_header Upgrade $http_upgrade;
-	  proxy_set_header Connection 'upgrade';
-	  proxy_set_header Host $host;
-	  proxy_cache_bypass $http_upgrade;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection 'upgrade';
+		proxy_set_header Host $host;
+		proxy_cache_bypass $http_upgrade;
 	}
 }
 ```
+
+All done. Now it's time to run our app:
+$ cd
+$ cd testpuppetgithub
+$ pm2 start ftestpuppet.js
+
+To inspect the app logs while running:
+$ pm2 logs ftestpuppet --lines 10000
+
+Now the app is running, waiting for connections.
+
+In your Windows box, open your browser and type the address of the linux box (in my case http://192.168.248.132)
+
+You will see a page with an input text box, one button and 2 canvas: the canvas at top is the original canvas, the canvas at bottom is the final (resized) canvas. The input text box contains the fabric canvas objects Json encoded. Clicking the button the Json data will be sent to the server application which will create the final PNG file in the testpuppetgithub/pngs folder.
+
+Esplore the code to understand what happened and how.
+
+To exit the logs type CTRL-C.
+
+To stop all the running apps:
+$ pm2 stop all
+
+To clean the logs:
+$ pm2 flush
 

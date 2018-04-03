@@ -55,15 +55,15 @@ ftestpuppet.post('/process', function(req, res) {
 	
 	// Creates the folder if needed
 	createFolder(__dirname + '/' + folder, 0755, function(err) {
-			    if (err) {
-			    	// handle folder creation error
-			    	res.redirect('/');
-				}
-			    else { // we're all good
-			    	// deletes all (png) files from user folder if any
-			    	cleanFolder(folder);
-			    }
-			});
+	    if (err) {
+		// handle folder creation error
+		res.redirect('/');
+		}
+	    else { // we're all good
+		// deletes all (png) files from user folder if any
+		cleanFolder(folder);
+	    }
+	});
 	
 	// Quit client
 	res.end();
@@ -82,7 +82,7 @@ ftestpuppet.post('/process', function(req, res) {
 
   		try {
 
-			// Opens the template.html page in chromium
+		// Opens the template.html page in chromium
     		await page.goto('http://localhost/template');
     
     		const ret = await page.evaluate((projectData, cw, ch) => {
@@ -97,21 +97,21 @@ ftestpuppet.post('/process', function(req, res) {
     		
     		// doJob() returns the encoded PNG in dataFrame
     		var dataFrame = await page.evaluate( () => {
-				doJob();
-				return document.getElementById("phantom_outdata").value;
-			});
-			
-			// Creates the PNG from dataFrame
-			dataFrame = dataFrame.replace(/^data:image\/png;base64,/, "");
-				
-			
-			// Writes the PNG file
-			fs.writeFile(__dirname + '/' + fld + '/test.png', dataFrame, 'base64', function(err, data) {
-				if (err) {
-				    console.log('err', err);
-				}
-				console.log('>> test.png file has been saved!');
-			});
+			doJob();
+			return document.getElementById("phantom_outdata").value;
+		});
+
+		// Creates the PNG from dataFrame
+		dataFrame = dataFrame.replace(/^data:image\/png;base64,/, "");
+
+
+		// Writes the PNG file
+		fs.writeFile(__dirname + '/' + fld + '/test.png', dataFrame, 'base64', function(err, data) {
+			if (err) {
+			    console.log('err', err);
+			}
+			console.log('>> test.png file has been saved!');
+		});
 
   		} catch (err) {
 

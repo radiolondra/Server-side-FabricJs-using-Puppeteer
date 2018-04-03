@@ -1,0 +1,41 @@
+<html>
+<head>
+
+
+<!-- <<<<<<<<<<<<<<<<<<<<<<<<<< SCRIPTS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="fabric.js"></script>
+<script type="text/javascript" src="fabfunctions.js"></script>
+
+
+
+</head>
+<body>
+
+<canvas id="surface" style="display:none;"></canvas>
+
+<input type="text" id="phantom_indata" name="indata"/>
+<input type="text" id="phantom_outdata" name="outdata"/>
+<!-- <button id="phantom_button" name="phantom_button">BOTTONE</button> -->
+
+
+<script>
+	
+	// Prepare fabric classes, canvas, objects
+	function prepareProcess(cw,ch){
+		fabFunctions.init();
+	    fabFunctions.prepareObjects(cw,ch);
+	}
+	
+	// Create PNGs
+	function doJob(idx) {
+		fabFunctions.doJob();
+	}
+	
+</script>
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>TEST PNG</title>
+
+
+    <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<< SCRIPTS >>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+    
+    <!-- JQuery -->
+    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+    
+    <!-- Fabric JS -->
+    <script type="text/javascript" src="fabric.js"></script>
+    
+    <script type="text/javascript" src="maintest.js"></script>
+    
+    <!-- END OF LOCAL SCRIPTS -->
+
+</head>
+
+<body>
+
+	<form action="/process" method="post">
+
+		<div>
+			<input type="text" id="mydata" name="mydata"/>
+			<!-- <input type="text" id="myfolder" name="myfolder"/> -->
+			<input type="submit" value="Send JSON Data"/>
+		</div>
+
+	</form> 
+	 
+	<div id="wrapper">
+	    <canvas id="theCanvas"></canvas>
+	</div>
+	<div id="wrapperHidden">
+        <canvas id="theCanvasHidden"></canvas>
+    </div>
+
+</body>
+
+</html>

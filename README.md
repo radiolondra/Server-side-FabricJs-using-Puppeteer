@@ -132,7 +132,7 @@ If your basic network settings are correct, you will see a page (testJson.html) 
 
 #### Note: I resized the canvas client side but, obviously, you can simply modify the code to resize it server side before to create the PNG.
 
-In this application I used some custom Fabricjs objects classes with several custom properties added. The same classes are used client side (testJson.html) while creating the canvas (libs/maintest.js).
+In this application, (template.html), I used some custom Fabricjs objects classes with several custom properties added (libs/fabfunctions.js). The same classes are used client side (testJson.html) while creating the canvas (libs/maintest.js).
 
 In the application, Puppeteer uses template.html to perform all the job. This page includes the needed scripts and defines the server side used canvas in the DOM.
 

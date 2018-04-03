@@ -51,7 +51,7 @@ NodeJs 8.10.0
 
 ```$ sudo npm install pm2 -g```
 
-Now copy the repo folder (testpuppetgithub) into your linux user folder and :
+Now copy the repo folder (testpuppetgithub) into your linux /home/<youruser> folder and :
 
 ```$ cd testpuppetgithub```
 

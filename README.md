@@ -62,7 +62,7 @@ Now copy the repo folder (testpuppetgithub) into your linux ```/home/<youruser>`
 This will use the package.json file to install all the needed modules. Puppeteer is installed too together with the Chromium lib.
 
 
-Now it's time to configure your Nginx server to answer the app requests.
+#### Now it's time to configure your Nginx server to answer the app requests.
 
 To configure it, you need to know the IP address of your linux box. To do this you can use ```ipconfig```. Write down the IP address.
 Also you need the port number where our app is listening for connections. The ftestpuppet.js app actually listens at the port 44533.

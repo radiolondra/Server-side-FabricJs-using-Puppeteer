@@ -69,7 +69,7 @@ Also you need the port number where our app is listening for connections. The ft
 
 #### Remember that you could need to add NAT (e.g. you are using VMWare) and open the listening port (in this case 44533). If those basic network configuration are not correctly set the client browser will not be able to reach the linux box IP address.
 
-Now lets configure Nginx.
+### Now lets configure Nginx.
 
 ```$ cd /etc/nginx/sites-available```
 

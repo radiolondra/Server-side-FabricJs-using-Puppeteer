@@ -14,7 +14,7 @@ const puppeteer = require('puppeteer');
 var bodyParser = require('body-parser');
 ftestpuppet.use(bodyParser.urlencoded({ extended: true }));
 
-// static folder to serve files 
+// static folder to serve all files to all pages  
 ftestpuppet.use(express.static(__dirname + '/libs'));
 
 // CORS
@@ -43,17 +43,17 @@ ftestpuppet.get('/template', function (req, res) {
 
 
 ftestpuppet.post('/process', function(req, res) {
-	
-    
-    // canvas dimensions
+	// canvas dimensions
 	var wantedW = 1920; 
 	var wantedH = 1080;
+	
 	// the json project sent by client
 	var data = req.body.mydata;
+	
 	// the folder where to write the PNG file
 	var folder = 'pngs';
-	
-	// Creates the folder if needed
+
+	// Creates the pngs folder if needed
 	createFolder(__dirname + '/' + folder, 0755, function(err) {
 	    if (err) {
 		// handle folder creation error
@@ -64,39 +64,41 @@ ftestpuppet.post('/process', function(req, res) {
 		cleanFolder(folder);
 	    }
 	});
-	
+
 	// Quit client
 	res.end();
-	
+
 	// Start the job with puppeteer
 	(async() => {
 
+		// change headless to false to view the template.html page
 		const browser = await puppeteer.launch({headless: true});
 		const page = await browser.newPage();
-		
+
 		const projectData = data; // the project sent
 		const cw = wantedW; // video width
 		const ch = wantedH; // video height
-		
+
 		const fld = folder;
 
-  		try {
+		try {
 
 		// Opens the template.html page in chromium
-    		await page.goto('http://localhost/template');
-    
-    		const ret = await page.evaluate((projectData, cw, ch) => {
-      			
-      			// puts the project data in template.html and prepare everything
-      			document.getElementById("phantom_indata").value = projectData;
-      			prepareProcess(cw, ch);
+		await page.goto('http://localhost/template');
 
-      			return 'All set!';
-    		}, projectData, cw, ch)
-    	
-    		
-    		// doJob() returns the encoded PNG in dataFrame
-    		var dataFrame = await page.evaluate( () => {
+		const ret = await page.evaluate((projectData, cw, ch) => {
+
+			// puts the project data in template.html and prepare everything
+			document.getElementById("phantom_indata").value = projectData;
+			// prepareProcess() script function is in template.html page
+			prepareProcess(cw, ch);
+
+			return 'All set!';
+		}, projectData, cw, ch)
+
+
+		// doJob() script function is in template.html and returns the encoded PNG in dataFrame
+		var dataFrame = await page.evaluate( () => {
 			doJob();
 			return document.getElementById("phantom_outdata").value;
 		});
@@ -113,15 +115,15 @@ ftestpuppet.post('/process', function(req, res) {
 			console.log('>> test.png file has been saved!');
 		});
 
-  		} catch (err) {
+		} catch (err) {
 
-    		console.log('ERR:', err.message);
+		console.log('ERR:', err.message);
 
-  		} finally {
+		} finally {
 
-    		browser.close();
+		browser.close();
 
-  		}
+		}
 
 	})();
 

@@ -21,10 +21,7 @@ ftestpuppet.use(express.static(__dirname + '/libs'));
 var cors = require('cors');
 ftestpuppet.options('*', cors());
 
-// FFMPEG
-var spawn = require('child_process').spawn;
 var path = require('path');
-
 
 // Accept all connection origins
 io.set('origins','*:*');

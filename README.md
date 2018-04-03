@@ -103,7 +103,15 @@ server {
 }
 ```
 
-All done. Now it's time to run our app:
+All done. Restart Nginx:
+
+```$ sudo systemctl restart nginx```
+
+Verify Nginx is running:
+
+```$ sudo systemctl status nginx```
+
+Now it's time to run our app:
 
 ```
 $ cd
@@ -112,12 +120,11 @@ $ cd testpuppetgithub
 
 $ pm2 start ftestpuppet.js
 ```
+Now the app is running, waiting for connections.
 
-To inspect the app logs while running:
+To inspect the app logs while the app is running:
 
 ```$ pm2 logs ftestpuppet --lines 10000```
-
-Now the app is running, waiting for connections.
 
 In your Windows box, open your browser and type the address of the linux box (in my case http://192.168.248.132)
 

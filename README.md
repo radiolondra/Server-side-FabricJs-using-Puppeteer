@@ -25,11 +25,9 @@ In this repo I used FabricJs 1.7.20 and Puppeteer ( https://github.com/GoogleChr
 
 ### Used Behaviour:
 
-Ubuntu 16.04.3 as VMWare virtual machine (remember to install VMWare Tools too)
-
-Nginx 1.10.3
-
-NodeJs 8.10.0
+- Ubuntu 16.04.3 as VMWare virtual machine (remember to install VMWare Tools too)
+- Nginx 1.10.3
+- NodeJs 8.10.0
 
 ### INSTALL NGINX
 
@@ -128,7 +126,9 @@ To inspect the app logs while the app is running:
 
 In your Windows box, open your browser and type the address of the linux box (in my case http://192.168.248.132)
 
-If your basic network settings are correct, you will see a page (testJson.html) with an input text box, one button and 2 canvas: the canvas at top is the original canvas (900x510), the canvas at bottom is the final (resized) canvas (1920x1080). The input text box contains the resized fabric canvas objects Json encoded. Clicking the button the Json data will be sent to the server application which will create the final PNG file in the testpuppetgithub/pngs folder. Et voilà! All done!
+If your basic network settings are correct, you will see a page (testJson.html) with an input text box, one button and 2 canvas: the canvas at the top is the original canvas (900x510), the canvas at the bottom is the final (resized) canvas (1920x1080). The input text box contains the resized fabric canvas objects Json encoded. Clicking the button the Json data will be sent to the server application which will create the final PNG file in the testpuppetgithub/pngs folder. 
+
+### Et voilà! All done!
 
 #### Note: I resized the canvas client side but, obviously, you can simply modify the code to resize it server side before to create the PNG.
 
@@ -150,4 +150,4 @@ To clean the logs:
 
 ```$ pm2 flush```
 
-Have fun!
+### Have fun!

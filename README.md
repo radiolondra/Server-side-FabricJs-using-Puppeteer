@@ -114,7 +114,7 @@ Now the app is running, waiting for connections.
 
 In your Windows box, open your browser and type the address of the linux box (in my case http://192.168.248.132)
 
-You will see a page (testJson.html) with an input text box, one button and 2 canvas: the canvas at top is the original canvas, the canvas at bottom is the final (resized) canvas. The input text box contains the fabric canvas objects Json encoded. Clicking the button the Json data will be sent to the server application which will create the final PNG file in the testpuppetgithub/pngs folder.
+You will see a page (testJson.html) with an input text box, one button and 2 canvas: the canvas at top is the original canvas (900x510), the canvas at bottom is the final (resized) canvas (1920x1080). The input text box contains the resized fabric canvas objects Json encoded. Clicking the button the Json data will be sent to the server application which will create the final PNG file in the testpuppetgithub/pngs folder.
 
 #### Note: I resized the canvas client side but, obviously, you can simply modify the code to resize it server side before to create the PNG.
 
@@ -122,9 +122,9 @@ In this application I used some custom Fabricjs objects classes with several cus
 
 In the application, Puppeteer uses template.html to perform all the job. This page includes the needed scripts and defines the server side used canvas in the DOM.
 
-The client page (testJson.html) and the server page (template.html) use the same fabric.js file (version 1.7.20)
+The client page (testJson.html) and the server page (template.html) both use the same fabric.js file (version 1.7.20)
 
-It is a good idea now to esplore the code to understand what and how things happen :)
+It is a good idea now to esplore the code to understand what, where and how things happen :)
 
 To exit the logs type CTRL-C.
 
@@ -136,3 +136,4 @@ To clean the logs:
 
 ```$ pm2 flush```
 
+Have fun!

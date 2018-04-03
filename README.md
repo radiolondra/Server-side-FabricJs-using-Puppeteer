@@ -23,35 +23,45 @@ In this repo I used Puppeteer ( https://github.com/GoogleChrome/puppeteer ) to c
 
 #### Note: the http server host is a Nginx server. All the http server settings reported here are for Nginx only.
 
-Used Behaviour:
+### Used Behaviour:
+
 Ubuntu 16.04.3 as VMWare virtual machine (remember to install VMWare Tools too)
 Nginx 1.10.3
 NodeJs 8.10.0
 
-INSTALL NGINX
+### INSTALL NGINX
+
 $ sudo apt-get update
+
 $ sudo apt-get install nginx
 
-INSTALL CURL
+### INSTALL CURL
+
 $ sudo apt-get install curl
 
-INSTALL NODEJS LTS (includes NPM)
+### INSTALL NODEJS LTS (includes NPM)
+
 $ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+
 $ sudo apt-get install nodejs
 
-INSTALL PM2 MANAGER GLOBALLY (useful to launch/control NodeJs apps)
+### INSTALL PM2 MANAGER GLOBALLY (useful to launch/control NodeJs apps)
+
 $ sudo npm install pm2 -g
 
 Now copy the repo folder (testpuppetgithub) into your linux user folder and :
+
 $ cd testpuppetgithub
 
-INSTALL THE NEEDED NODE MODULES
+### INSTALL THE NEEDED NODE MODULES
+
 $ npm install
 
 This will use the package.json file to install all the needed modules. Puppeteer is installed too together with the Chromium lib.
 
 
 Now it's time to configure your Nginx server to answer the app requests.
+
 To configure it, you need to know the IP address of your linux box. To do this you can use ipconfig. Write down the IP address.
 Now lets configure Nginx.
 
@@ -87,11 +97,15 @@ server {
 ```
 
 All done. Now it's time to run our app:
+
 $ cd
+
 $ cd testpuppetgithub
+
 $ pm2 start ftestpuppet.js
 
 To inspect the app logs while running:
+
 $ pm2 logs ftestpuppet --lines 10000
 
 Now the app is running, waiting for connections.
@@ -105,8 +119,10 @@ Esplore the code to understand what happened and how.
 To exit the logs type CTRL-C.
 
 To stop all the running apps:
+
 $ pm2 stop all
 
 To clean the logs:
+
 $ pm2 flush
 

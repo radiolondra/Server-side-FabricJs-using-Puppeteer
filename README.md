@@ -1,13 +1,13 @@
-# Server side FabricJs using Puppeteer
+# Using not-node-module FabricJs server side with Puppeteer
 
-Creating a PNG from fabricjs canvas server side is not reliable, as demonstrated in this repo:
+Creating a PNG image server side starting from a Fabricjs node-module canvas is not reliable, as demonstrated in this repo:
 
 https://github.com/radiolondra/Fabric-and-or-Node-Canvas-Issues
 
 and discussed in this post:
 https://github.com/kangax/fabric.js/issues/4812
 
-Node-Canvas, used by Node FabricJS, is not able to correctly work with objects' scaling/positioning, specially for Text and patterns.
+Node-Canvas, used by the FabricJS node-module, is not able to correctly work with objects' scaling/positioning, specially for Text and patterns.
 
 Imagine you created a browser based video editor where the user can create some fabricjs objects with animations and overlay them over a previously chosen video object. Each object starts at specific frame of the base video and ends at another specific frame. To create the overlays you need to scale all the objects to the real base video width and height, create one PNG for each frame and then use ffmpeg to put all together and create the final (overlayed) video.
 
@@ -17,9 +17,9 @@ Anyway, whatever the job you want to do, if it needs to export the Fabricjs obje
 
 ### What can we do?
 
-The only reliable and fast way is to use some headless browser server side and "simulate" exactly what you'd have done client side.
+The only reliable and fast way is to use, server side, the normal FabricJs library (not the nodejs one) with the help of some headless browser and "simulate" exactly what you'd have done client side.
 
-In this repo I used Puppeteer ( https://github.com/GoogleChrome/puppeteer ) to create a simple NodeJs app able to create a PNG file starting from a Json encoded FabricJs canvas remotely sent by the client browser. The Fabric version used server side is the same version used client side, so no Node-Canvas, and we are safe and happy.
+In this repo I used FabricJs 1.7.20 and Puppeteer ( https://github.com/GoogleChrome/puppeteer ) to create a simple NodeJs app able to create a PNG file starting from a Json encoded FabricJs canvas remotely sent by the client browser. The Fabric version used server side is the same version used client side, so no Node-Canvas, and we are safe and happy.
 
 #### Note: the http server host is a Nginx server. All the http server settings reported here are for Nginx only.
 

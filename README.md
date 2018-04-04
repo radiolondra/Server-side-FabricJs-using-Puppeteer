@@ -138,7 +138,7 @@ In the application, Puppeteer uses template.html to perform all the job. This pa
 
 The client page (testJson.html) and the server page (template.html) both use the same fabric.js file (version 1.7.20)
 
-It is a good idea now to esplore the code to understand what, where and how things happen :)
+**It is a good idea now to esplore the code to understand what, where and how things happen** :)
 
 To exit the logs type CTRL-C.
 

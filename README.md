@@ -1,3 +1,4 @@
+![RadioLondra](../master/logo/rlc.jpg)
 # Using FabricJs server side with Puppeteer
 ### Howto render Fabric canvas objects to image server side without the Node-Canvas module
 

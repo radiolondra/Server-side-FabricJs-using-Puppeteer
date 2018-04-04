@@ -1,5 +1,5 @@
 # Using FabricJs server side with Puppeteer
-### Howto render Fabric canvas objects to an image server side without the Node-Canvas module
+### Howto render Fabric canvas objects to image server side without the Node-Canvas module
 
 Creating an image server side using the Fabricjs node-module canvas is not reliable, as demonstrated in this repo:
 
@@ -15,22 +15,24 @@ https://github.com/kangax/fabric.js/issues/4812
 
 Node-Canvas, used by the FabricJS node-module, is actually not able to scale/position fabric's objects properly. Lot of issues are reported especially for Text and patterns rendering and image loading.
 
-Imagine you created a browser based video editor where the user can create some fabricjs objects with animations and overlay them over a previously chosen video object. Each object starts at specific frame of the base video and ends at another specific frame. To create the overlays you need to scale all the objects to the real base video width and height, create one PNG for each frame and then use ffmpeg to put all together and create the final (overlayed) video.
+### My Sample Scenario
+Imagine we created a browser based video editor where the user can create some fabricjs objects with animations and he/she can overlay them over a previously chosen video object to create a new customized video. 
+Each object starts at specific frame of the base video and ends at another specific frame playing added animations. 
+To create the overlays we need to scale all the objects to the real base video width and height, create one PNG for each frame and then use ffmpeg to put all together and create the final (overlayed) video.
 
-It's unthinkable to create the PNGs client side and send them to the server for ffmpeg processing, because the sending process needs a lot of time and resources. So we have to create the PNG files server side.
+It's unthinkable to create all the PNGs client side and send them to the server for ffmpeg processing, because the sending process needs a lot of time and resources. So we have to create the PNG files server side.
 
-Anyway, whatever the job you want to do, if you need to export the Fabricjs objects in some image files and perform some time-consuming processing on the images, and you need/want to do it server side, the usage of Nodejs versions of FabricJs with Node-Canvas is not the right way.
+### Which is your?
+Whatever the scenario and whatever the job you want to do, if you need to export the Fabricjs objects in some image files and perform some time-consuming processing on the images, and you need/want to do it server side, the usage of Nodejs versions of FabricJs with Node-Canvas is not the right way.
 
 ### What can we do?
-
 The only reliable and fast way is to use, server side, the normal FabricJs library (not the nodejs one) with the help of some headless browser and "simulate" exactly what you'd have done client side.
 
-In this repo I used FabricJs 1.7.20 and Puppeteer ( https://github.com/GoogleChrome/puppeteer ) to create a simple NodeJs app able to create a PNG file starting from a Json encoded FabricJs canvas remotely sent by the client browser. The Fabric version used server side is the same version (better, the same file) used client side, so no Node-Canvas, and we are safe and happy.
+In this repo I used FabricJs 1.7.20 and Puppeteer ( https://github.com/GoogleChrome/puppeteer ) to create a simple NodeJs app able to create a PNG file starting from a Json encoded FabricJs canvas remotely sent by the client browser. The Fabric version used server side is the same version (better, the same file) used client side, so no Node-Canvas. And we are safe and happy.
 
 #### Note: the http server used here is a Nginx server. All the http server settings below are valid for Nginx only.
 
 ### Used Behaviour:
-
 - Ubuntu 16.04.3 as VMWare virtual machine (remember to install VMWare Tools too)
 - Nginx 1.10.3
 - NodeJs 8.10.0
@@ -77,11 +79,11 @@ Also you need the port number where our app is listening for connections. The ft
 
 ```$ cd /etc/nginx/sites-available```
 
-**_This is not the right way_** but to make things simpler and faster, make a copy of the "default" file:
+**_This is not the correct way_** (as you should create and configure new Nginx server blocks) but to make things simpler and faster, simply make a safety copy of the "default" file (the server block Nginx creates by default):
 
 ```$ sudo cp default default-ORIGINAL```
 
-Now edit the default file, delete all rows and put the following:
+Now edit the "default" file, delete all rows and put the following:
 
 ```
 upstream http_backend {
@@ -107,7 +109,9 @@ server {
 }
 ```
 
-All done. Restart Nginx:
+All done. 
+
+**Restart Nginx:**
 
 ```$ sudo systemctl restart nginx```
 
@@ -115,7 +119,7 @@ Verify Nginx is running:
 
 ```$ sudo systemctl status nginx```
 
-Now it's time to run our app:
+**Now it's time to run our app:**
 
 ```
 $ cd
@@ -124,17 +128,17 @@ $ cd testpuppetgithub
 
 $ pm2 start ftestpuppet.js
 ```
-Now the app is running, waiting for connections.
+**Now the app is running, waiting for connections.**
 
 To inspect the app logs while the app is running:
 
 ```$ pm2 logs ftestpuppet --lines 10000```
 
-In your Windows box, open your browser and type the address of the linux box (in my case http://192.168.248.132)
+In your Windows(?) box, open your browser and type the address of the linux box (in my case http://192.168.248.132)
 
 If your basic network settings are correct, you will see a page (testJson.html) with an input text box, one button and 2 canvas: the canvas at the top is the original canvas (900x510), the canvas at the bottom is the final (resized) canvas (1920x1080). The input text box contains the resized fabric canvas objects Json encoded. Clicking the button the Json data will be sent to the server application which will create the final PNG file in the testpuppetgithub/pngs folder. 
 
-### Et voilà! All done!
+### Et voilà! All done.
 
 #### Note: I resized the canvas client side but, obviously, you can simply modify the code to resize it server side before to create the PNG.
 

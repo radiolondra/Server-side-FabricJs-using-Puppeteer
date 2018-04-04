@@ -38,45 +38,48 @@ In this repo I used FabricJs 1.7.20 and Puppeteer ( https://github.com/GoogleChr
 - Nginx 1.10.3
 - NodeJs 8.10.0
 
-### INSTALL NGINX
+### Step 1: INSTALL NGINX
 
 ```$ sudo apt-get update```
 
 ```$ sudo apt-get install nginx```
 
-### INSTALL CURL
+### Step 2: INSTALL CURL
 
 ```$ sudo apt-get install curl```
 
-### INSTALL NODEJS LTS (includes NPM)
+### Step 3: INSTALL NODEJS LTS (includes NPM)
 
 ```$ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -```
 
 ```$ sudo apt-get install nodejs```
 
-### INSTALL PM2 MANAGER GLOBALLY (useful to launch/control NodeJs apps)
+### Step 4: INSTALL PM2 MANAGER GLOBALLY (useful to launch/control NodeJs apps)
 
 ```$ sudo npm install pm2 -g```
 
-Now copy the repo folder (testpuppetgithub) into your linux ```/home/<youruser>``` folder and :
+### Step 5: COPY THE REPO AND INSTALL THE NEEDED NODE MODULES
+
+Now copy the repo folder (testpuppetgithub) into your linux ```/home/<youruser>``` folder and:
 
 ```$ cd testpuppetgithub```
 
-### INSTALL THE NEEDED NODE MODULES
+Now install the needed node modules:
 
 ```$ npm install```
 
 This will use the package.json file to install all the needed modules. Puppeteer is installed too together with the Chromium lib.
 
+### Step 6: CONFIGURE NGINX
 
-#### Now it's time to configure your Nginx server to answer the app requests.
+Now it's time to configure your Nginx server to answer the app requests.
 
 To configure it, you need to know the IP address of your linux box. To do this you can use ```ipconfig```. Write down the IP address.
 Also you need the port number where our app is listening for connections. The ftestpuppet.js app actually listens at the port 44533.
 
 #### Remember that you could need to add NAT (e.g. you are using VMWare) and open the listening port (in this case 44533) or play with your firewall (if you have one running). If those basic network configuration are not correctly set the client browser will not be able to reach the linux box IP address.
 
-### Now lets configure Nginx.
+#### Now lets configure Nginx.
 
 ```$ cd /etc/nginx/sites-available```
 
@@ -119,6 +122,9 @@ All done.
 Verify Nginx is running:
 
 ```$ sudo systemctl status nginx```
+
+
+### Step 7: RUN THE APP
 
 **Now it's time to run our app:**
 

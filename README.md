@@ -5,7 +5,12 @@ Creating an image server side using the Fabricjs node-module canvas is not relia
 
 https://github.com/radiolondra/Fabric-and-or-Node-Canvas-Issues
 
+reported in the FabricJs Web Site:
+
+https://github.com/kangax/fabric.js/wiki/Fabric-limitations-in-node.js
+
 and discussed in this post:
+
 https://github.com/kangax/fabric.js/issues/4812
 
 Node-Canvas, used by the FabricJS node-module, is actually not able to correctly scale/position fabric's objects, especially Text and patterns.

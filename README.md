@@ -71,7 +71,7 @@ Also you need the port number where our app is listening for connections. The ft
 
 ```$ cd /etc/nginx/sites-available```
 
-This is not the right way but to make things simpler and faster, make a copy of the "default" file:
+**_This is not the right way_** but to make things simpler and faster, make a copy of the "default" file:
 
 ```$ sudo cp default default-ORIGINAL```
 

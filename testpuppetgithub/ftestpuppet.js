@@ -1,7 +1,7 @@
 require("http").globalAgent.maxSockets = Infinity;
 
+// Modules & server references
 var express = require('express');
-
 var ftestpuppet = express(),
     server = require('http').createServer(ftestpuppet),
     io = require('socket.io').listen(server),
@@ -21,6 +21,7 @@ ftestpuppet.use(express.static(__dirname + '/libs'));
 var cors = require('cors');
 ftestpuppet.options('*', cors());
 
+// Path reference
 var path = require('path');
 
 // Accept all connection origins
@@ -33,15 +34,17 @@ server.listen(44533);
 // ------------------------------------------------------------
 // HTTP ROUTES
 // ------------------------------------------------------------
+// Send testJson.html page to client
 ftestpuppet.get('/', function (req, res) {
 	res.sendFile(__dirname + '/testJson.html');
 });
 
+// Send template.html to Chromium (Puppeteer)
 ftestpuppet.get('/template', function (req, res) {
 	res.sendFile(__dirname + '/template.html');
 });
 
-
+// Client request: /process
 ftestpuppet.post('/process', function(req, res) {
 	// canvas dimensions
 	var wantedW = 1920; 
@@ -76,8 +79,8 @@ ftestpuppet.post('/process', function(req, res) {
 		const page = await browser.newPage();
 
 		const projectData = data; // the project sent
-		const cw = wantedW; // video width
-		const ch = wantedH; // video height
+		const cw = wantedW; // canvas width
+		const ch = wantedH; // canvas height
 
 		const fld = folder;
 
@@ -105,7 +108,6 @@ ftestpuppet.post('/process', function(req, res) {
 
 		// Creates the PNG from dataFrame
 		dataFrame = dataFrame.replace(/^data:image\/png;base64,/, "");
-
 
 		// Writes the PNG file
 		fs.writeFile(__dirname + '/' + fld + '/test.png', dataFrame, 'base64', function(err, data) {

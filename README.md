@@ -18,7 +18,7 @@ Node-Canvas, used by the FabricJS node-module, is actually not able to scale/pos
 
 ### My Sample Scenario
 Imagine we created a browser based video editor where the user can create some fabricjs objects with animations and he/she can overlay them over a previously chosen video object to create a new customized video. 
-Each object starts at specific frame of the base video and ends at another specific frame playing added animations. 
+Each object visibility starts at specific frame of the base video and ends at another specific frame playing added animations. 
 To create the overlays we need to scale all the objects to the real base video width and height, create one PNG for each frame and then use ffmpeg to put all together and create the final (overlayed) video.
 
 It's unthinkable to create all the PNGs client side and send them to the server for ffmpeg processing, because the sending process needs a lot of time and resources. So we have to create the PNG files server side.

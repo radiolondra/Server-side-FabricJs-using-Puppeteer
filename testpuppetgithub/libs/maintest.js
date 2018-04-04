@@ -173,7 +173,8 @@ $(document).ready(function () {
     // --------------------------------------------------------------------------
 
     // ==========================================================================
-    // Rendering
+    // Resize and render objects to the wanted canvas
+    // Encode the canvas to Json and put Json data into the mydata input text
     // ==========================================================================
     function renderingCanvas() {
         

@@ -1,4 +1,4 @@
-# Using not-node-module FabricJs server side with Puppeteer
+# Using FabricJs server side with Puppeteer
 
 Creating a PNG image server side starting from a Fabricjs node-module canvas is not reliable, as demonstrated in this repo:
 

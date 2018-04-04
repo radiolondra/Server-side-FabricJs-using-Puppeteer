@@ -1,5 +1,5 @@
 # Using FabricJs server side with Puppeteer
-## How to render server side Fabric canvas objects to an image without Node-Canvas module
+### Howto render Fabric canvas objects to an image server side without the Node-Canvas module
 
 Creating an image server side using the Fabricjs node-module canvas is not reliable, as demonstrated in this repo:
 
@@ -13,7 +13,7 @@ and discussed in this post:
 
 https://github.com/kangax/fabric.js/issues/4812
 
-Node-Canvas, used by the FabricJS node-module, is actually not able to correctly scale/position fabric's objects, especially Text and patterns.
+Node-Canvas, used by the FabricJS node-module, is actually not able to scale/position fabric's objects properly. Lot of issues are reported especially for Text and patterns rendering and image loading.
 
 Imagine you created a browser based video editor where the user can create some fabricjs objects with animations and overlay them over a previously chosen video object. Each object starts at specific frame of the base video and ends at another specific frame. To create the overlays you need to scale all the objects to the real base video width and height, create one PNG for each frame and then use ffmpeg to put all together and create the final (overlayed) video.
 

@@ -58,7 +58,23 @@ In this repo I used FabricJs 1.7.20 and Puppeteer ( https://github.com/GoogleChr
 
 ```$ sudo npm install pm2 -g```
 
-### Step 5: COPY THE REPO AND INSTALL THE NEEDED NODE MODULES
+### Step 5: INSTALL CHROME DEPENDENCY
+#### 1 -Download the package:
+
+(for Ubuntu 64 bits systems. For Ubuntu 32 bits or other OSes go to the google download website and download the right file).
+
+```$ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb```
+
+#### 2 - Install the package forcing install of dependencies:
+
+```$ sudo dpkg -i --force-depends google-chrome-stable_current_amd64.deb```
+
+#### 3 - In case any dependencies didn't install (you got some warning/error while installing) force them with:
+```$ sudo apt-get install -f```
+
+and launch the (**2**) again.
+
+### Step 6: COPY THE REPO AND INSTALL THE NEEDED NODE MODULES
 
 Now copy the repo folder (testpuppetgithub) into your linux ```/home/<youruser>``` folder and:
 
@@ -70,7 +86,7 @@ Now install the needed node modules:
 
 This will use the package.json file to install all the needed modules. Puppeteer is installed too together with the Chromium lib.
 
-### Step 6: CONFIGURE NGINX
+### Step 7: CONFIGURE NGINX
 
 Now it's time to configure your Nginx server to answer the app requests.
 

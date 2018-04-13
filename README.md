@@ -90,7 +90,7 @@ This will use the package.json file to install all the needed modules. Puppeteer
 
 Now it's time to configure your Nginx server to answer the app requests.
 
-To configure it, you need to know the IP address of your linux box. To do this you can use ```ipconfig```. Write down the IP address.
+To configure it, you need to know the IP address of your linux box. To do this you can use ```ifconfig```. Write down the IP address.
 Also you need the port number where our app is listening for connections. The ftestpuppet.js app actually listens at the port 44533.
 
 #### Remember that you could need to add NAT (e.g. you are using VMWare) and open the listening port (in this case 44533) or play with your firewall (if you have one running). If those basic network configuration are not correctly set the client browser will not be able to reach the linux box IP address.
